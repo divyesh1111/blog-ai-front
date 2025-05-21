@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const API_BASE = process.env.REACT_APP_API_URL;
 
@@ -31,15 +32,23 @@ export default function PublicBlogs() {
       {blogs.length === 0 ? (
         <p>No blogs found.</p>
       ) : (
-        blogs.map(blog => (
-          <div key={blog._id} className="mb-6 p-4 border rounded shadow max-w-4xl">
-            <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
-            <p className="whitespace-pre-wrap mb-2">{blog.content}</p>
-            <small className="text-gray-500">
-              Created at: {new Date(blog.createdAt).toLocaleString()}
-            </small>
-          </div>
-        ))
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogs.map((blog) => (
+            <div key={blog._id} className="p-4 border rounded shadow bg-white">
+              <Link to={`/blogs/${blog._id}`}>
+                <h2 className="text-xl font-semibold mb-2 text-blue-600 hover:underline">
+                  {blog.title}
+                </h2>
+              </Link>
+              <p className="whitespace-pre-wrap mb-2">
+                {blog.content.split(' ').slice(0, 5).join(' ')}...
+              </p>
+              <small className="text-gray-500">
+                Created at: {new Date(blog.createdAt).toLocaleString()}
+              </small>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

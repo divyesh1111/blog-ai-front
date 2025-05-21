@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import Admin from './Admin';
 import PublicBlogs from './PublicBlogs';
 import Login from './Login';
+import BlogDetails from './BlogDetails';
+
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -21,12 +23,6 @@ function App() {
           {token ? (
             <>
               <Link to="/admin" className="hover:text-blue-600">Admin Panel</Link>
-              <button
-                onClick={() => setToken(null)}
-                className="text-red-600 hover:underline"
-              >
-                Logout
-              </button>
             </>
           ) : (
             <Link to="/login" className="hover:text-blue-600">Admin Login</Link>
@@ -40,6 +36,8 @@ function App() {
             element={token ? <Admin token={token} /> : <Navigate to="/login" />}
           />
           <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
+
         </Routes>
       </div>
     </Router>
