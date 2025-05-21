@@ -34,19 +34,21 @@ export default function PublicBlogs() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogs.map((blog) => (
-            <div key={blog._id} className="p-4 border rounded shadow bg-white">
-              <Link to={`/blogs/${blog._id}`}>
-                <h2 className="text-xl font-semibold mb-2 text-blue-600 hover:underline">
-                  {blog.title}
-                </h2>
-              </Link>
-              <p className="whitespace-pre-wrap mb-2">
+            <Link
+              key={blog._id}
+              to={`/blogs/${blog._id}`}
+              className="p-4 border border-green-500 rounded shadow bg-white hover:bg-green-100 hover:shadow-2xl transition duration-500 block"
+            >
+              <h2 className="text-xl font-semibold mb-2 text-black">
+                {blog.title}
+              </h2>
+              <p className="whitespace-pre-wrap mb-2 text-gray-400">
                 {blog.content.split(' ').slice(0, 5).join(' ')}...
               </p>
               <small className="text-gray-500">
                 Created at: {new Date(blog.createdAt).toLocaleString()}
               </small>
-            </div>
+            </Link>
           ))}
         </div>
       )}
