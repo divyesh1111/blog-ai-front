@@ -22,7 +22,6 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex gap-6 items-center ">
                     <Link to="/" className="text-white hover:text-green-500 font-medium">Home</Link>
-                    <Link to="/admin" className="text-white hover:text-green-500 font-medium">Admin</Link>
                 </nav>
 
                 {/* Mobile Menu Icon on the right */}
@@ -53,7 +52,6 @@ export default function Navbar() {
 
                 <nav className="flex flex-col p-4 gap-4">
                     <Link to="/" onClick={toggleMenu} className="text-gray-700 hover:text-green-500 font-medium">Home</Link>
-                    <Link to="/admin" onClick={toggleMenu} className="text-gray-700 hover:text-green-500 font-medium">Admin</Link>
                 </nav>
             </div>
 
